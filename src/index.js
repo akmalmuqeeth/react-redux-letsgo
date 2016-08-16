@@ -7,6 +7,10 @@ import React from 'react';
 so we need to import react-dom needs anytime we need a render funtion which renders page on the browser*/
 import {render} from 'react-dom';
 
+import configureStore from './store/configureStore';
+/*a higher order component that attaches our store to our React container component*/
+import {Provider} from 'react-redux';
+
 /*when declaring Router , we need to specify what kind of browser history we need
 * as in, the URL structure, either hash based or not*/
 import {Router, browserHistory} from 'react-router';
@@ -15,7 +19,11 @@ import routes from './routes';
 import './styles/styles.css';//Webpack can import CSS files too
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+const store = configureStore();
+
 render (
-	<Router history={browserHistory} routes={routes} />,
+	<Provider store={store}>
+		<Router history={browserHistory} routes={routes} />
+	</Provider>,
 	document.getElementById('app')
 );
