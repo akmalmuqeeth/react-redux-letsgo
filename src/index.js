@@ -15,11 +15,14 @@ import {Provider} from 'react-redux';
 * as in, the URL structure, either hash based or not*/
 import {Router, browserHistory} from 'react-router';
 
+import {loadCourses} from './actions/courseActions';
+
 import routes from './routes';
 import './styles/styles.css';//Webpack can import CSS files too
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
+store.dispatch(loadCourses());
 
 render (
 	<Provider store={store}>
